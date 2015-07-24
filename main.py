@@ -1,8 +1,9 @@
-import DataServices\lastFm.py
+import lastFm
+import pandas
 
 def main():
-    lastfm
-    solve_infinite_io_mdp_test()
+    lastFmDataFrame = lastFm.get_recent_tracks()
+    print lastFmDataFrame.head(20)
 
 
 if __name__ == '__main__':
