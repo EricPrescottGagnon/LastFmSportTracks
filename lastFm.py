@@ -3,16 +3,19 @@ import sys
 import pandas
 import datetime
 
+
 def clean_track_info(track):
     """Create a more compact json object out of the lastfm track json"""
     artist = track["artist"]["#text"]
+    album = track["album"]["#text"]
     song = track["name"]
     if "@attr" in track.keys() and track["@attr"]["nowplaying"] == "true":
         date_listened = datetime.datetime.utcnow()
     else:
         date_str = track["date"]["#text"]
         date_listened = datetime.datetime.strptime(date_str, "%d %b %Y, %H:%M")
-    return {"artist": artist, "song": song, "date_listened": date_listened}
+    return {"artist": artist, "album": album, "song": song, "date_listened": date_listened}
+
 
 def get_recent_tracks():
     lastfm_url = "http://ws.audioscrobbler.com/2.0/"
